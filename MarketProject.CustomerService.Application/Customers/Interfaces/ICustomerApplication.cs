@@ -1,4 +1,4 @@
-﻿using MarketProject.CustomerService.Domain;
+﻿using MarketProject.CustomerService.Common;
 using MarketProject.CustomerService.Domain.Models;
 
 namespace MarketProject.CustomerService.Application.Customers.Interfaces

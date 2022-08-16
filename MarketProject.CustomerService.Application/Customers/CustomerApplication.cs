@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MarketProject.CustomerService.Application.Customers.Interfaces;
+using MarketProject.CustomerService.Common;
 using MarketProject.CustomerService.Domain;
 using MarketProject.CustomerService.Domain.Models;
 using MarketProject.CustomerService.Persistence.CQRS.Commands;

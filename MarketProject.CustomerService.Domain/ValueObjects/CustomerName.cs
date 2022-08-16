@@ -1,4 +1,6 @@
-﻿namespace MarketProject.CustomerService.Domain.ValueObjects
+﻿using MarketProject.CustomerService.Common;
+
+namespace MarketProject.CustomerService.Domain.ValueObjects
 {  
     public record struct CustomerName
     {

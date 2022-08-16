@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using MarketProject.CustomerService.Common;
 using MarketProject.CustomerService.Domain.Entities;
 using MarketProject.CustomerService.Domain.ValueObjects;
 

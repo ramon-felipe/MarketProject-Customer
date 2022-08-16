@@ -1,4 +1,6 @@
-﻿namespace MarketProject.CustomerService.Domain.Entities
+﻿using MarketProject.CustomerService.Common;
+
+namespace MarketProject.CustomerService.Domain.Entities
 {
     public class Customer : Entity
     {
@@ -23,8 +25,6 @@
             
             if (name.Length > 100)
                 return Result.Failure<Customer>(ResultError.Create("Name is too long."));
-
-
 
             return Result.Success(new Customer(id, name));
         }

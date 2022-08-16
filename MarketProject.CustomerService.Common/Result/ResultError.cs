@@ -1,4 +1,4 @@
-﻿namespace MarketProject.CustomerService.Domain
+﻿namespace MarketProject.CustomerService.Common
 {
     public class ResultError : Exception
     {
@@ -24,6 +24,12 @@
         public static ResultError Create(string message)
         {
             return new ResultError(message);
+        }
+
+        public static ResultError Create<T>(string message) 
+            where T: Exception, new()
+        {
+            return new ResultError(message, new T());
         }
         
         public static ResultError Create(string message, Exception innerException)
