@@ -7,8 +7,8 @@ namespace MarketProject.CustomerService.Persistence.Repositories
     public interface ICustomerRepository
     {
         Result<Customer> Get(int customerId);
+        Result<IEnumerable<Customer>> GetAll();
         Customer GetLast();
-        IEnumerable<Customer> GetAll();
         Customer Create(string name);
     }
 }

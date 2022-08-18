@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketProject.CustomerService.Persistence.CQRS.Commands
+namespace MarketProject.CustomerService.Persistence.CQRS.Commands.Interfaces
 {
     public interface ICreateCustomerCommand
     {

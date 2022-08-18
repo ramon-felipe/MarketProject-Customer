@@ -1,4 +1,5 @@
-﻿using MarketProject.CustomerService.Persistence.Repositories;
+﻿using MarketProject.CustomerService.Persistence.CQRS.Commands.Interfaces;
+using MarketProject.CustomerService.Persistence.Repositories;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

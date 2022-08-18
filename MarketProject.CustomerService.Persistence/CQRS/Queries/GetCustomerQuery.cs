@@ -1,6 +1,7 @@
 ﻿using MarketProject.CustomerService.Common;
 using MarketProject.CustomerService.Domain;
 using MarketProject.CustomerService.Domain.Entities;
+using MarketProject.CustomerService.Persistence.CQRS.Queries.Interfaces;
 using MarketProject.CustomerService.Persistence.Repositories;
 using Microsoft.Extensions.Logging;
 using System;

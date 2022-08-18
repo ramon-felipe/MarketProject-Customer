@@ -25,14 +25,25 @@ public class CustomerController : ControllerBase
     {
         var result = _customerApplication.GetCustomer(id);
 
-        if (result.IsSuccess)
-        {
-            var customer = result.Value;
-            _logger.LogInformation($"User found: {customer}");
-            return Ok(customer);
-        }
+        if(result.IsFailure)
+            return Problem(result.Error.Message);
 
-        return Problem(result.Error.Message);
+        var customer = result.Value;
+        _logger.LogInformation($"User found: {customer}");
+        return Ok(customer);
+    }
+
+    [HttpGet("getall",Name = nameof(GetAll))]
+    public ActionResult<IEnumerable<CustomerResponseModel>> GetAll()
+    {
+        var result = _customerApplication.GetAllCustomers();
+
+        if (result.IsFailure)
+            return Problem(result.Error.Message);
+        
+        var customers = result.Value;
+        _logger.LogInformation($"Users found: {customers.Count()}");
+        return Ok(customers);
     }
 
     [HttpGet("getCustomerAccount" , Name = nameof(GetCustomerAccount))]

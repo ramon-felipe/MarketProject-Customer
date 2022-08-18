@@ -11,7 +11,7 @@ namespace MarketProject.CustomerService.Persistence.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public IEnumerable<Customer> Customers { get; set; }
+        private IEnumerable<Customer> Customers { get; set; }
 
         public CustomerRepository()
         {
@@ -39,8 +39,18 @@ namespace MarketProject.CustomerService.Persistence.Repositories
             }
         }
 
-        public IEnumerable<Customer> GetAll()
-            => Customers;
+        public Result<IEnumerable<Customer>> GetAll() 
+        {
+            try
+            {
+                return Result.Success(Customers);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public Customer GetLast()
         {
@@ -52,8 +62,12 @@ namespace MarketProject.CustomerService.Persistence.Repositories
         {
             var lastId = Customers.Last().Id;
             var newId = lastId + 1;
+            var newCustomer = Customer.Create(newId, name).Value;
 
-            return Customer.Create(newId, name).Value;
+            var newCustomersList = Customers.Append(newCustomer);
+            Customers = newCustomersList;
+
+            return newCustomer;
         }
     }
 }

@@ -3,8 +3,8 @@ using MarketProject.CustomerService.Application.Customers.Interfaces;
 using MarketProject.CustomerService.Common;
 using MarketProject.CustomerService.Domain;
 using MarketProject.CustomerService.Domain.Models;
-using MarketProject.CustomerService.Persistence.CQRS.Commands;
-using MarketProject.CustomerService.Persistence.CQRS.Queries;
+using MarketProject.CustomerService.Persistence.CQRS.Commands.Interfaces;
+using MarketProject.CustomerService.Persistence.CQRS.Queries.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace MarketProject.CustomerService.Application.Customers
@@ -18,13 +18,15 @@ namespace MarketProject.CustomerService.Application.Customers
         private readonly ICreateCustomerCommand _createCustomerCommand;
         private readonly IGetCustomerQuery _getCustomerQuery;
         private readonly IGetLastCustomerQuery _getLastCustomerQuery;
+        private readonly IGetAllCustomersQuery _getAllCustomersQuery;
 
         public CustomerApplication(IHttpClientFactory httpClientFactory, 
                                    ILogger<CustomerApplication> logger,
                                    IMapper mapper,
                                    ICreateCustomerCommand createCustomerCommand, 
                                    IGetCustomerQuery getCustomerQuery,
-                                   IGetLastCustomerQuery getLastCustomerQuery)
+                                   IGetLastCustomerQuery getLastCustomerQuery,
+                                   IGetAllCustomersQuery getAllCustomersQuery)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
@@ -32,6 +34,7 @@ namespace MarketProject.CustomerService.Application.Customers
             _createCustomerCommand = createCustomerCommand;
             _getCustomerQuery = getCustomerQuery;
             _getLastCustomerQuery = getLastCustomerQuery;
+            _getAllCustomersQuery = getAllCustomersQuery;
         }
 
         public CustomerResponseModel CreateAndReturnCustomer(string name)
@@ -42,6 +45,14 @@ namespace MarketProject.CustomerService.Application.Customers
             var customerResult = _mapper.Map<CustomerResponseModel>(customer);
 
             return customerResult;
+        }
+
+        public Result<IEnumerable<CustomerResponseModel>> GetAllCustomers()
+        {
+            var result = _getAllCustomersQuery.Execute().Value;
+            var customersResult = Result.Success(_mapper.Map<IEnumerable<CustomerResponseModel>>(result));
+
+            return customersResult;
         }
 
         public Result<CustomerResponseModel> GetCustomer(int customerId)

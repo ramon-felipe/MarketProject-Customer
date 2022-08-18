@@ -5,7 +5,9 @@ using MarketProject.CustomerService.Application.Exceptions.Filters;
 using MarketProject.CustomerService.Domain.MapperProfiles;
 using MarketProject.CustomerService.Domain.Validators;
 using MarketProject.CustomerService.Persistence.CQRS.Commands;
+using MarketProject.CustomerService.Persistence.CQRS.Commands.Interfaces;
 using MarketProject.CustomerService.Persistence.CQRS.Queries;
+using MarketProject.CustomerService.Persistence.CQRS.Queries.Interfaces;
 using MarketProject.CustomerService.Persistence.Repositories;
 using System.Net;
 
@@ -38,6 +40,7 @@ builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICreateCustomerCommand, CreateCustomerCommand>();
 builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
 builder.Services.AddScoped<IGetLastCustomerQuery, GetLastCustomerQuery>();
+builder.Services.AddScoped<IGetAllCustomersQuery, GetAllCustomersQuery>();
 
 builder.Services.AddHttpClient("CustomerAccount", httpClient =>
 {
