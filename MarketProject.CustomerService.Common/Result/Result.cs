@@ -43,6 +43,11 @@
             return new Result<T>(default, false, error);
         }
 
+        public static Result<T> Failure<T>(string errorMessage)
+        {
+            return new Result<T>(default, false, errorMessage);
+        }
+
         /// <summary>
         /// It process an action and returns <see cref="Success"/> or <see cref="Failure"/>
         /// </summary>
@@ -121,6 +126,12 @@
 
         public Result(T value, bool isSuccess, ResultError error)
             : base(isSuccess, error)
+        {
+            _value = value;
+        }
+
+        public Result(T value, bool isSuccess, string errorMessage)
+            : base(isSuccess, ResultError.Create(errorMessage))
         {
             _value = value;
         }

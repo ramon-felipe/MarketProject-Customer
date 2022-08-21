@@ -9,6 +9,8 @@ using MarketProject.CustomerService.Persistence.CQRS.Commands.Interfaces;
 using MarketProject.CustomerService.Persistence.CQRS.Queries;
 using MarketProject.CustomerService.Persistence.CQRS.Queries.Interfaces;
 using MarketProject.CustomerService.Persistence.Repositories;
+using MarketProject.CustomerService.Services.MessageService.Interfaces;
+using MarketProject.CustomerService.Services.MessageService.RabbitMQ;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,8 @@ builder.Services.AddScoped<ICreateCustomerCommand, CreateCustomerCommand>();
 builder.Services.AddScoped<IGetCustomerQuery, GetCustomerQuery>();
 builder.Services.AddScoped<IGetLastCustomerQuery, GetLastCustomerQuery>();
 builder.Services.AddScoped<IGetAllCustomersQuery, GetAllCustomersQuery>();
+
+builder.Services.AddScoped<IMessageService, RabbitMqService>();
 
 builder.Services.AddHttpClient("CustomerAccount", httpClient =>
 {

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MarketProject.CustomerService.Domain\MarketProject.CustomerService.Domain.csproj" />
     <ProjectReference Include="..\MarketProject.CustomerService.Persistence\MarketProject.CustomerService.Persistence.csproj" />
+    <ProjectReference Include="..\MarketProject.CustomerService.Services\MarketProject.CustomerService.Services.csproj" />
   </ItemGroup>
 
 </Project>
